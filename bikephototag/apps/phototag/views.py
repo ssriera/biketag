@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import bikephototag.apps.phototag as models
+import bikephototag.apps.phototag.models as models
 from django.views.generic import TemplateView
 
 class Index(TemplateView):
@@ -7,7 +7,9 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        #ncontext['locations'] = models.Location.objects.all()
+        context['locations'] = []
+        for location in models.Location.objects.all():
+            context['locations'].append(location.menu_dict())
 
 # class LocationList(TemplateView):
 #     template_name = '/phototag/index.html'

@@ -6,6 +6,19 @@ class Location(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
 
+    def menu_dict(self):
+        current_photo = PhotoEvent.objects.all().order_by('-date_found')[0]
+        print current_photo
+
+        menu = {
+            'name': self.name,
+            'description': self.description,
+            'current_photos_user_name': current_photo.user,
+            'posted_time': current_photo.date_found,
+        }
+        return menu
+
+
 class PhotoEvent(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
     user = models.ForeignKey(User)
