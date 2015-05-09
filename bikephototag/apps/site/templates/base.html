@@ -1,0 +1,109 @@
+{% load tags %}
+{% load flatpages %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+    {% compress css %}
+    <link href="{{ STATIC_URL }}css/compiled/theme.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}css/vendor/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}datepicker/css/datepicker.css" />
+    {% endcompress %}
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}jqcloud/js/jqcloud-1.0.4.min.js"></script>
+
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if IE 7]>
+	  <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+	<![endif]-->
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a href="/" class="navbar-brand scroller" data-section="body">
+                <span style="font-size: 27px;" class="glyphicon glyphicon-tree-conifer"></span>
+	      </a>
+	    </div>
+
+	    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	      	<ul class="nav navbar-nav">
+
+
+
+      {% if request.user.is_authenticated %}
+        <li {% active request "^/m/s/$" %}><a href="/m/s/">Gear Sets</a></li>
+      {% endif %}
+        <li {% active request "^/gs/" %}><a href="/gs/">Group Sets</a></li>
+      {% if False %}
+        <li {% active request "^/t/" %}><a href="/t/">Popular Gear</a></li>
+      {% endif %}
+        {% for page in flatpages %}
+        <li {% active request page.url %} ><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+        <li {% active request "^/contact/$" %}><a href="/contact/">Contact</a></li>
+
+
+
+
+      {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.hikername|capfirst}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/m/s/">My Gear Sets</a></li>
+            <li><a href="/m/g/">My Gear</a></li>
+            <li class="divider"></li>
+            <li class="disabled"><a href="#">Account Settings</a></li>
+              {% if request.user.is_superuser %}
+                <li><a href="/admin/">DB Admin</a></li>
+              {% endif %}
+            <li class="divider"></li>
+            <li><a href="/accounts/logout/">Logout</a></li>
+          </ul>
+        </li>
+    {% else %}
+        <li>
+          <a href="/accounts/login/">Login/Account Lookup</span></a>
+        </li>
+      {% endif %}
+	      	</ul>
+
+
+
+	    </nav>
+	  </div>
+	</header>
+
+
+    {% block containerless_content %}
+        {% block content %}
+        {% endblock content %}
+    {% endblock containerless_content %}
+    {% include 'autocomplete_light/static.html' %}
+    {% block appjs %}
+    {% endblock %}
+</body>
+</html>
