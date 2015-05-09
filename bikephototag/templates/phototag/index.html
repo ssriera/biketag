@@ -16,13 +16,7 @@
 		</div>
 	</section>
 
-        {% for location in locations %}
-            {{location.name}}
-            {{location.description}}
-            {{location.current_photos_user_name}}
-            {{location.posted_time}}
-            <img class="img-responsive" src="{{location.photo_url}}">
-        {% endfor %}
+     
 
 	<!-- Current Tags -->
 	<section class="block gray-block" id="current-tags">
@@ -33,15 +27,17 @@
 					<span class="line"></span>
 				</header>
 					
-				 {% for location in locations %}
-	            {{location.name}}
-	            {{location.description}}
-	            {{location.current_photos_user_name}}
-	            {{location.posted_time}}
+				{% for location in locations %}
+				<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}">
+
+	            <h5>Name of Group:</h5>{{location.name}}
+	            <h5>Description:</h5>{{location.description}}
+	            <h5>Biker:</h5>{{location.current_photos_user_name}}
+	            <h5>Start Time:</h5>{{location.posted_time}}
+	            <br>
+	            
 	        {% endfor %}
 
-	        @foreach ($location as $location)
-			
 			</div>
 		</div>
 	</section>
