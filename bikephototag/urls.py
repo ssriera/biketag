@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from bikephototag.apps.phototag.views import Index
+from bikephototag.apps.phototag.views import Index, LocationDetail
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -13,6 +13,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^', include('bikephototag.apps.site.urls', namespace='site')),
     url(r'^$', Index.as_view()),
+    url(r'^(?P<location_id>\w+)/$', LocationDetail.as_view()),
 
     # url(r'^', include('jmtwear.apps.gearlist.urls', namespace='gearlist')),
     # url(r'^autocomplete/', include('autocomplete_light.urls')),

@@ -16,8 +16,9 @@ class Location(models.Model):
             'name': self.name,
             'description': self.description,
             'current_photos_user_name': current_photo.user,
-            'posted_time': current_photo.date_found,
+            'posted_time': current_photo.date_added,
             'photo_url': current_photo.photo.url,
+            'get_absolute_url': '/%s/' % self.id
         }
         return menu
 
