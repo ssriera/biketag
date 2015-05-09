@@ -1392,6 +1392,7 @@ pre code {
   background-color: #77dfea;
   margin-top: 0px;
   margin-bottom: 0px;
+  height: 350px;
 }
 
 .container {
@@ -1400,6 +1401,17 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+#current-tags {
+  height: 350px;
+  background-color: #e9dcd2;
+}
+
+#aboutus {
+  background-color: #8fb258;
+  height: 350px;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;

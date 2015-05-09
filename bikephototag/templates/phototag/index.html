@@ -10,26 +10,31 @@
 			<div class="row">
 				<h1>Banner Space</h1>
 					<div class="img">
-						<img class="img-responsive" src="{{STATIC_URL }}images/devices.png">
+						
 					</div>
 			</div>	
 		</div>
 	</section>
-        {% for location in locations %}
-            {{location.name}}
-            {{location.description}}
-            {{location.current_photos_user_name}}
-            {{location.posted_time}}
-        {% endfor %}
+       
+      
 
-	<!-- Features -->
-	<section class="block gray-block" id="features">
+	<!-- Current Tags -->
+	<section class="block gray-block" id="current-tags">
 		<div class="container">
-			<header>
-				<h2>Features</h2>
-				<span class="line"></span>
-			</header>
-				
+			<div class="row">
+				<header>
+					<h2>Current Tags</h2>
+					<span class="line"></span>
+				</header>
+					
+				 {% for location in locations %}
+	            {{location.name}}
+	            {{location.description}}
+	            {{location.current_photos_user_name}}
+	            {{location.posted_time}}
+	        {% endfor %}
+
+	        @foreach ($location as $location)
 			
 			</div>
 		</div>
@@ -40,12 +45,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 text">
+					<h2>About Us</h2>
 					<h3></h3>
 					<a href="#" class="btn btn-gray">Learn more</a>
 				</div>
 
 				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 pull-right img">
-					<img class="img-responsive" src="{{STATIC_URL }}images/about-circles.png">
+					
 				</div>
 			</div>
 		</div>
@@ -67,7 +73,7 @@
 
 			<div class="row">
 				<div class="col-lg-4">
-					<p>© 2015 - biketag.me </p>
+					<p>Home grown in Austin © 2015 BikeTag </p>
 				</div>
 
 				<div class="col-lg-6 pull-right">
