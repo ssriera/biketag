@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+
 
 # Create your models here.
 class Location(models.Model):
@@ -15,6 +17,7 @@ class Location(models.Model):
             'description': self.description,
             'current_photos_user_name': current_photo.user,
             'posted_time': current_photo.date_found,
+            'photo_url': current_photo.photo.url,
         }
         return menu
 
