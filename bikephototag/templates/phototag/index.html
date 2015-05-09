@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block containerless_content %}
+	<!-- Banner -->
+	<section class="banner">
+		<div class="container">
+			<div class="row">
+				<h1></h1>
+
+				<div class="img">
+					<img class="img-responsive" src="{{STATIC_URL }}images/devices.png">
+				</div>
+			</div>	
+		</div>
+	</section>
+
+	<!-- About Us -->
+	<section class="block" id="aboutus">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 text">
+					<h3></h3>
+					<a href="#" class="btn btn-gray">Learn more</a>
+				</div>
+
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 pull-right img">
+					<img class="img-responsive" src="{{STATIC_URL }}images/about-circles.png">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features -->
+	<section class="block gray-block" id="features">
+		<div class="container">
+			<header>
+				<h2>Features</h2>
+				<span class="line"></span>
+			</header>
+
+			<div class="row">
+				<div class="pic col-xs-12 col-sm-5 col-md-5 col-lg-6">
+					<img class="img-responsive" src="{{ STATIC_URL }}images/feature1.jpg">
+				</div>
+
+				<div class="info col-xs-12 col-sm-7 col-md-7 col-lg-6">
+				</div>
+			</div>
+
+			<div class="row to-right">
+				<div class="pic col-xs-12 col-sm-5 col-md-5 col-lg-6">
+					<img class="img-responsive" src="{{ STATIC_URL }}images/feature2.jpg">
+				</div>
+
+				<div class="info col-xs-12 col-sm-7 col-md-7 col-lg-6">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer id="contact">
+		<div class="container">
+			<div class="row">
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				</div>
+
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-7 col-md-7 col-lg-7 pull-right">
+					<h2>Get Started</h2>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4">
+					<p>© 2015 - biketag.me </p>
+				</div>
+
+				<div class="col-lg-6 pull-right">
+				</div>
+			</div>
+		</div>
+	</footer>
+
+<div class="container"
+<hr>
+</div>
+{% endblock %}
