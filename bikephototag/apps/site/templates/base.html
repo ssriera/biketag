@@ -11,14 +11,12 @@
 
 
 
-    {% compress css %}
     <link href="{{ STATIC_URL }}css/compiled/theme.css" rel="stylesheet" media="screen">
     <link href="{{ STATIC_URL }}css/vendor/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}datepicker/css/datepicker.css" />
-    {% endcompress %}
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}jqcloud/js/jqcloud-1.0.4.min.js"></script>
 
@@ -61,9 +59,6 @@
       {% if False %}
         <li {% active request "^/t/" %}><a href="/t/">Popular Gear</a></li>
       {% endif %}
-        {% for page in flatpages %}
-        <li {% active request page.url %} ><a href="{{ page.url }}">{{ page.title }}</a></li>
-        {% endfor %}
         <li {% active request "^/contact/$" %}><a href="/contact/">Contact</a></li>
 
 
