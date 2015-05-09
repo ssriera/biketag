@@ -15,6 +15,12 @@
 			</div>	
 		</div>
 	</section>
+        {% for location in locations %}
+            {{location.name}}
+            {{location.description}}
+            {{location.current_photos_user_name}}
+            {{location.posted_time}}
+        {% endfor %}
 
 	<!-- Features -->
 	<section class="block gray-block" id="features">

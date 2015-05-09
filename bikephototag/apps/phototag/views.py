@@ -10,6 +10,7 @@ class Index(TemplateView):
         context['locations'] = []
         for location in models.Location.objects.all():
             context['locations'].append(location.menu_dict())
+        return context
 
 # class LocationList(TemplateView):
 #     template_name = '/phototag/index.html'
