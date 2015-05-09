@@ -1,0 +1,23 @@
+[
+{
+  "pk": 1, 
+  "model": "phototag.location", 
+  "fields": {
+    "name": "Austin-Central", 
+    "description": "Area from N UT area to 71st bounded by I35 and MOPAC"
+  }
+},
+{
+  "pk": 1, 
+  "model": "phototag.photoevent", 
+  "fields": {
+    "photo": "photos/2015/05/10/9Mb7ZoR.jpg", 
+    "longitude": 15.0, 
+    "finding_user": null, 
+    "date_found": null, 
+    "user": 1, 
+    "latitude": 15.0, 
+    "date_added": "2015-05-09T21:05:51.107Z"
+  }
+}
+]
