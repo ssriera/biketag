@@ -12,11 +12,7 @@
 
 
     <link href="{{ STATIC_URL }}css/compiled/theme.css" rel="stylesheet" media="screen">
-    <link href="{{ STATIC_URL }}css/vendor/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}datepicker/css/datepicker.css" />
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}jqcloud/js/jqcloud-1.0.4.min.js"></script>
 
@@ -33,72 +29,60 @@
 	<![endif]-->
 </head>
 <body>
-	<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a href="/" class="navbar-brand scroller" data-section="body">
-                <span style="font-size: 27px;" class="glyphicon glyphicon-tree-conifer"></span>
-	      </a>
-	    </div>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
 
-	    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-	      	<ul class="nav navbar-nav">
-
-
-
-      {% if request.user.is_authenticated %}
-        <li {% active request "^/m/s/$" %}><a href="/m/s/">Gear Sets</a></li>
-      {% endif %}
-        <li {% active request "^/gs/" %}><a href="/gs/">Group Sets</a></li>
-      {% if False %}
-        <li {% active request "^/t/" %}><a href="/t/">Popular Gear</a></li>
-      {% endif %}
-        <li {% active request "^/contact/$" %}><a href="/contact/">Contact</a></li>
-
-
-
-
-      {% if request.user.is_authenticated %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.hikername|capfirst}} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/m/s/">My Gear Sets</a></li>
-            <li><a href="/m/g/">My Gear</a></li>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
             <li class="divider"></li>
-            <li class="disabled"><a href="#">Account Settings</a></li>
-              {% if request.user.is_superuser %}
-                <li><a href="/admin/">DB Admin</a></li>
-              {% endif %}
+            <li><a href="#">Separated link</a></li>
             <li class="divider"></li>
-            <li><a href="/accounts/logout/">Logout</a></li>
+            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
-    {% else %}
-        <li>
-          <a href="/accounts/login/">Login/Account Lookup</span></a>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
         </li>
-      {% endif %}
-	      	</ul>
-
-
-
-	    </nav>
-	  </div>
-	</header>
-
-
-    {% block containerless_content %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
         {% block content %}
         {% endblock content %}
-    {% endblock containerless_content %}
-    {% include 'autocomplete_light/static.html' %}
-    {% block appjs %}
-    {% endblock %}
 </body>
 </html>
