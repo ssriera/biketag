@@ -15,8 +15,14 @@
 			</div>	
 		</div>
 	</section>
-       
-      
+
+        {% for location in locations %}
+            {{location.name}}
+            {{location.description}}
+            {{location.current_photos_user_name}}
+            {{location.posted_time}}
+            <img class="img-responsive" src="{{location.photo_url}}">
+        {% endfor %}
 
 	<!-- Current Tags -->
 	<section class="block gray-block" id="current-tags">
