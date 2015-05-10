@@ -32,3 +32,5 @@ django-gravatar2
 python-memcached
 django-compressor
 psycopg2==2.5.2
+django-couch-utils
+pycurl
