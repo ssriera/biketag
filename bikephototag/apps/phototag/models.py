@@ -17,17 +17,23 @@ class Location(models.Model):
             'description': self.description,
             'current_photos_user_name': current_photo.user,
             'posted_time': current_photo.date_added,
-            'photo_url': current_photo.photo.url,
             'get_absolute_url': '/%s/' % self.id
         }
-        if current_photo.found_photo:
-            menu['found_photo_url'] = current_photo.found_photo.url
+        id = current_photo.photo_couch_id
+        menu['photo_url'] = 'https://fdaf8a38-357f-459f-ae94-ad37be2c14db-bluemix.cloudant.com/images/%s/capture.png' % id
+        if current_photo.found_photo_couch_id:
+            id = current_photo.found_photo_couch_id
+            menu['found_photo_url'] = 'https://fdaf8a38-357f-459f-ae94-ad37be2c14db-bluemix.cloudant.com/images/%s/capture.png' % id
         return menu
 
 
 class PhotoEvent(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
+    photo_couch_id = models.CharField(max_length=128, blank=True,
+            null=True)
     found_photo = models.ImageField(upload_to='foundphotos/%Y/%m/%d', blank=True, null=True)
+    found_photo_couch_id = models.CharField(max_length=128, blank=True,
+            null=True)
     user = models.ForeignKey(User)
     finding_user = models.ForeignKey(User, blank=True, null=True,
             related_name='finding_user')

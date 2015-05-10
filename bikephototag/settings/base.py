@@ -205,3 +205,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'AKIAIRXIJNLJDMADZR3A'
 EMAIL_HOST_PASSWORD = 'As2dw2CJZtwDnvErZwztF5TshJdCyflvZaRq/KaOB4g2 '
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+COUCHDB = {
+    'db1': {
+        "server": "https://fdaf8a38-357f-459f-ae94-ad37be2c14db-bluemix:fa05aee971c845daa1afc6e87f3e7cd34a29a9bb3fe935338d09e95eea4cc49e@fdaf8a38-357f-459f-ae94-ad37be2c14db-bluemix.cloudant.com",
+        'database': 'images',
+        'default' : True,
+    }
+}
