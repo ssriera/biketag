@@ -14,8 +14,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^', include('bikephototag.apps.site.urls', namespace='site')),
     url(r'^$', Index.as_view()),
-    url(r'^(?P<location_id>\w+)/next/$', NewLocationEvent.as_view()),
-    url(r'^(?P<location_id>\w+)/$', LocationDetail.as_view()),
+    url(r'^(?P<location_id>\d+)/next/$', NewLocationEvent.as_view()),
+    url(r'^(?P<location_id>\d+)/$', LocationDetail.as_view()),
 
     # url(r'^', include('jmtwear.apps.gearlist.urls', namespace='gearlist')),
     # url(r'^autocomplete/', include('autocomplete_light.urls')),
