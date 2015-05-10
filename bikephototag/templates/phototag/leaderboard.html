@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style type="text/css">
+
+body {background-color: #e9dcd2;}
+
+</style>
+
 <header>
 	<h3 class="text-center">Leaderboard</h3>
 </header>
@@ -8,6 +14,8 @@
 <section class="leaderboard">
 	<div class="container">
 		<div class="row">
+			<img height="400" class="img-responsive" src="{{ STATIC_URL }}guy.jpeg">
+			<br>
 			<table class="table table-bordered table-striped table-hover">
 				<tr>
 					<th><strong>Biker</strong></th>
@@ -26,13 +34,26 @@
 		</div>
 	</div>
 </section>
+<br>
 
+<footer id="contact">
+		<div class="container">
+			<div class="row">
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				</div>
 
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-7 col-md-7 col-lg-7 pull-right">
 
+				</div>
+			</div>
 
-
-
-
+			<div class="row">
+				<div>
+					<p class="text-center">Home grown in Austin © 2015 BikeTag </p>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 
 

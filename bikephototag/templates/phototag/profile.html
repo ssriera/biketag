@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+	<h3 class="text-center">{{user_info.name}}'s Profile</h3>
+</header>
+
+<section class="profile">
+	<div class="container">
+		<div class="row">
+		<br>
+		<p>
+
+			<h3>Score:</h3>{{user_info.score}}
+			<h3>Last Challenge Won:</h3>{{user_info.last_challenge_won}}
+
+		</p>
+
+		</div>
+	</div>
+</section>
+
+<footer id="contact">
+		<div class="container">
+			<div class="row">
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				</div>
+
+				<div style="color: whitesmoke" class="col-xs-12 col-sm-7 col-md-7 col-lg-7 pull-right">
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div>
+					<p class="text-center">Home grown in Austin © 2015 BikeTag </p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+{% endblock %}

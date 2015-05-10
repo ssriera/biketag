@@ -19,6 +19,17 @@ class Login(TemplateView):
         context['registration_form'] = forms.RegistationForm()
         return context
 
+class Profile(TemplateView):
+    template_name = 'phototag/profile.html'
+    def get_context_data(self, **kwargs):
+        context = super(Profile, self).get_context_data(**kwargs)
+        context['user_info'] = {
+            'name': 'Steph',
+            'score': '15',
+            'last_challenge_won': 'String of some sort',
+        } 
+        return context
+
 
 class Leaderboard(TemplateView):
     template_name = 'phototag/leaderboard.html'
