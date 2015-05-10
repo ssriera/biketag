@@ -952,6 +952,10 @@ img {
   position: absolute;
 }
 
+#team {
+  -webkit-transform: rotate(90deg);
+}
+
 .img-rounded {
   border-radius: 6px;
 }
