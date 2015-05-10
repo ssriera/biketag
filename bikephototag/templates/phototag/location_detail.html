@@ -3,7 +3,83 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container"
-<h4>Location info</h4>
-<hr>
+	<h4>{{location.name}}</h4>
+	<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}"><br>
+	{{location.posted_time}}<br>
+	{{location.current_photos_user_name}}<br>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add_photo">Add Photo</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".request_hint">Request Hint</button>
+	<hr>
 </div>
+
+<div class="modal add_photo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Submit Photo</h4>
+      </div>
+      <div class="modal-body">
+			<video autoplay></video>
+			<img src="">
+			<canvas style="display:none;"></canvas>
+
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal request_hint">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Request Hint</h4>
+      </div>
+      <div class="modal-body">
+        <p>I need a hint&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock %}
+{% block appJS %}
+			<script>
+				var errorCallback = function(e) {
+					console.log('Reeeejected!', e);
+				  };
+				navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+			  var video = document.querySelector('video');
+			  var canvas = document.querySelector('canvas');
+			  var ctx = canvas.getContext('2d');
+			  var localMediaStream = null;
+
+			  function snapshot() {
+				if (localMediaStream) {
+				  ctx.drawImage(video, 0, 0);
+				  // "image/webp" works in Chrome.
+				  // Other browsers will fall back to image/png.
+				  document.querySelector('img').src = canvas.toDataURL('image/webp');
+				}
+			  }
+
+			  video.addEventListener('click', snapshot, false);
+
+			  // Not showing vendor prefixes or code that works cross-browser.
+			  navigator.getUserMedia({video: true}, function(stream) {
+				video.src = window.URL.createObjectURL(stream);
+				localMediaStream = stream;
+			  }, errorCallback);
+			</script>
 {% endblock %}
