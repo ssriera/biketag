@@ -2,6 +2,31 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+<!--<div class="container"
+	<h4>{{epoch.time}}</h4>-->
+	
+<span id="countdown" class="timer"></span>
+<script>
+var seconds = 1800;
+function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;  
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds == 0) {
+        clearInterval(countdownTimer);
+        document.getElementById('countdown').innerHTML = "0:00";
+    } else {
+        seconds--;
+    }
+}
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+</script>
+
 <div class="container"
 	<h4>{{location.name}}</h4>
 	<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}"><br>
@@ -12,3 +37,7 @@
 <script>
 </script>
 {% endblock %}
+
+
+
+
