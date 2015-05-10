@@ -1,25 +1,16 @@
 from bikephototag.settings.base import *
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 INSTALLED_APPS.append('raven.contrib.django.raven_compat')
 
-# DATABASES['default'] = {
-#         'ENGINE':'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'jmtwear_production',
-#         'USER': 'jmtwear_123',
-#         'PASSWORD': '12jlkaajfjjjjjj8f8f8AVVVa1',
-#         'HOST': '172.17.42.1',
-#         'PORT': '5432',
-#     }
 DATABASES['default'] = dj_database_url.config()
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
-# RAVEN_CONFIG = {
-#     'dsn':
-#         'https://@s.peakdata.net/2',
-# }
+RAVEN_CONFIG = {
+    'dsn': 'https://7106e6be67f7403c8ada95955523298b:9f5c8b44b5fc47b68320b3facfdaf544@s.peakdata.net/4',
+}
 os.environ['wsgi.url_scheme'] = 'https'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CACHES = {
