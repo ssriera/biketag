@@ -1,3 +1,4 @@
+--allow-unverified PIL
 Django==1.6.4
 Markdown==2.4
 PIL==1.1.7
@@ -30,3 +31,4 @@ raven==5.0.0
 django-gravatar2
 python-memcached
 django-compressor
+psycopg2==2.5.2
