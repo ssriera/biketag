@@ -11,6 +11,14 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 import bikephototag.apps.phototag.models as models
 import bikephototag.apps.phototag.forms as forms
 
+class Login(TemplateView):
+    template_name = 'phototag/login.html'
+    def get_context_data(self, **kwargs):
+        context = super(Login, self).get_context_data(**kwargs)
+        context['login_form'] = forms.LoginForm()
+        context['registration_form'] = forms.RegistationForm()
+        return context
+
 class Index(TemplateView):
     template_name = 'phototag/index.html'
 

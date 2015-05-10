@@ -10,3 +10,12 @@ class AddPhotoForm(forms.Form):
     img = forms.FileField()
     # latitude
     # longitude
+
+class RegistationForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField()
+    email = forms.CharField()
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField()
