@@ -33,6 +33,12 @@ class Profile(TemplateView):
         } 
         return context
 
+class NewEvent(TemplateView):
+    template_name = 'phototag/new_event.html'
+    def get_context_data(self, **kwargs):
+        context = super(NewEvent, self).get_context_data(**kwargs)
+        context['event_form'] = forms.EventForm()
+        return context
 
 class Leaderboard(TemplateView):
     template_name = 'phototag/leaderboard.html'
