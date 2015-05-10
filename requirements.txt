@@ -31,3 +31,4 @@ raven==5.0.0
 django-gravatar2
 python-memcached
 django-compressor
+psycopg2==2.5.2
