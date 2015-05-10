@@ -33,4 +33,4 @@ python-memcached
 django-compressor
 psycopg2==2.5.2
 django-couch-utils
-import pycurl
+pycurl
