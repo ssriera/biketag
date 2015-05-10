@@ -25,6 +25,7 @@ class Location(models.Model):
 
 class PhotoEvent(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d')
+    found_photo = models.ImageField(upload_to='foundphotos/%Y/%m/%d', blank=True, null=True)
     user = models.ForeignKey(User)
     finding_user = models.ForeignKey(User, blank=True, null=True,
             related_name='finding_user')

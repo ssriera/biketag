@@ -39,6 +39,11 @@ class NewLocationEvent(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(NewLocationEvent, self).get_context_data(**kwargs)
+        # FIXME: user id from the event
+        # location_id = int(kwargs['location_id'])
+        location_id = 1
+        location = models.Location.objects.get(pk=location_id)
+        context['location'] = location.menu_dict()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -69,11 +74,18 @@ class NewLocationEvent(FormView):
            charset=None)
         request.FILES[u'file'] = image
 
+        # FIXME: user id from the event
         location_id = 1
         location = models.Location.objects.get(pk=location_id)
+
         current_event = models.PhotoEvent.objects.all().order_by('-date_found')[0]
-        current_event.photo=request.FILES['file']
+        current_event.found_photo=request.FILES['file']
         current_event.finding_user = request.user
         current_event.date_found = datetime.datetime.now()
         current_event.save()
+
+        next_event = models.PhotoEvent(latitude=1, longitude=1)
+        next_event.user = request.user
+        next_event.save()
+
         return HttpResponseRedirect('/%s/next/' % location.id)

@@ -3,10 +3,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!--<div class="container"
-	<h4>{{epoch.time}}</h4>-->
 	
-<span id="countdown" class="timer"></span>
 <script>
 var seconds = 1800;
 function secondPassed() {
@@ -27,8 +24,9 @@ function secondPassed() {
 var countdownTimer = setInterval('secondPassed()', 1000);
 </script>
 
-<div class="container"
+<div class="container">
 	<h4>{{location.name}}</h4>
+	<p>You've got <span id="countdown" class="timer">30:01</span> to choose the next location for this event.  Choose wisely, but hurry!<p>
 	<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}"><br>
 	<hr>
 </div>
