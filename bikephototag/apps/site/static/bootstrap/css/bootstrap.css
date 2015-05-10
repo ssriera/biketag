@@ -954,6 +954,8 @@ img {
 
 #team {
   -webkit-transform: rotate(90deg);
+  position: relative;
+  display:block;
 }
 
 .img-rounded {
