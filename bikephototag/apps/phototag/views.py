@@ -1,12 +1,15 @@
-from django.shortcuts import render
-import bikephototag.apps.phototag.models as models
-import bikephototag.apps.phototag.forms as forms
-from django.views.generic import TemplateView, FormView
 import datetime
 import cStringIO
-from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 from urllib import unquote
+
+from django.shortcuts import render
+from django.views.generic import TemplateView, FormView
+from django.http import HttpResponseRedirect
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
+import bikephototag.apps.phototag.models as models
+import bikephototag.apps.phototag.forms as forms
 
 class Index(TemplateView):
     template_name = 'phototag/index.html'
@@ -39,7 +42,6 @@ class NewLocationEvent(FormView):
         return context
 
     def post(self, request, *args, **kwargs):
-
         file_field=request.POST['img']
 
         if file_field.startswith('data:'):
@@ -64,7 +66,6 @@ class NewLocationEvent(FormView):
            name='capture.png',
            content_type=mimetype,
            size=sys.getsizeof(file),
-           #size=len(file.getvalue()),
            charset=None)
         request.FILES[u'file'] = image
 
@@ -75,3 +76,4 @@ class NewLocationEvent(FormView):
         current_event.finding_user = request.user
         current_event.date_found = datetime.datetime.now()
         current_event.save()
+        return HttpResponseRedirect('/%s/next/' % location.id)

@@ -134,7 +134,9 @@ $.ajaxSetup({
 	  {
 	    img : canvas.toDataURL('image/png')
 	  },
-      function(data){});
+      function(data){
+		window.location = "{{location.get_absolute_url}}next/"
+		});
       $('.add_photo').modal('hide');
 	}
 	}
