@@ -8,10 +8,8 @@
 	<section class="banner">
 		<div class="container">
 			<div class="row">
-				<h1>Banner Space</h1>
-					<div class="img">
-						
-					</div>
+				<h1>Dude, where's my bike?</h1>
+					<img height="400" class="img-responsive" src="{{ STATIC_URL }}bikers.jpg">
 			</div>	
 		</div>
 	</section>
@@ -24,20 +22,25 @@
 			<div class="row">
 				<header>
 					<h2>Current Tags</h2>
-					<span class="line"></span>
 				</header>
 					
 				{% for location in locations %}
-				<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}">
+				<img height="200" class="img-responsive col-xs-3 col-md-3" src="{{location.photo_url}}">
 
-	            <h5>Name of Group:</h5>{{location.name}}
-	            <h5>Description:</h5>{{location.description}}
-	            <h5>Biker:</h5>{{location.current_photos_user_name}}
-	            <h5>Start Time:</h5>{{location.posted_time}}
-	            <br>
-	            
-	        {% endfor %}
+				<div class="col-xs-9 col-md-9 pull-right">
+		            <strong>Name of Group: </strong><br>
+		            <a href="{{location.get_absolute_url}}">{{location.name}}</a><br>
 
+		            <strong>Description: </strong><br>
+		            {{location.description}}<br>
+
+		            <strong>Biker: </strong><br>
+		            {{location.current_photos_user_name}}<br>
+		            <strong>Start Time: </strong><br>{{location.posted_time}}
+		            <br>
+		        </div> 
+		        {% endfor %}
+	        	
 			</div>
 		</div>
 	</section>
@@ -46,14 +49,13 @@
 	<section class="block" id="aboutus">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 text">
-					<h2>About Us</h2>
-					<h3></h3>
-					<a href="#" class="btn btn-gray">Learn more</a>
-				</div>
+				<div>
+					<h2 class="text-center">About Us</h2>
 
-				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 pull-right img">
-					
+					<img class="img-responsive col-xs-6 col-md-6 col-xs-offset-6 col-md-offset-6" src="{{ STATIC_URL }}team.jpg">
+					<br>
+					<h4 class="text-center"><em>We're just a friendly group of Texans wanting to promote a healthy, fun lifestyle through a fun game of bike tag!</em></h4>
+					<h5 class="col-xs-6 col-md-6 col-xs-offset-3 col-md-offset-3 text-center">(From left to right) <strong>Stephanie:</strong> Developed most of the front-end. <strong>Paul: </strong>Developed most of the back-end. <strong>Nicole: </strong>Helped with some views. <strong>Tyler and I.K.: </strong>Developed the business and marketing strategy.</h5>
 				</div>
 			</div>
 		</div>
@@ -74,11 +76,8 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4">
-					<p>Home grown in Austin © 2015 BikeTag </p>
-				</div>
-
-				<div class="col-lg-6 pull-right">
+				<div>
+					<p class="text-center">Home grown in Austin © 2015 BikeTag </p>
 				</div>
 			</div>
 		</div>
