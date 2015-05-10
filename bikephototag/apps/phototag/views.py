@@ -41,27 +41,27 @@ class Leaderboard(TemplateView):
         context['leaderboard'] = [
             {
                 'user': {
-                    'username': 'steph',
+                    'username': 'Steph',
                     'get_absolute_url': '/p/21/',
                 },
                 'score': 15,
-                'last_challenge_won': 'String of some sort',
+                'last_challenge_won': 'Austin - Central',
             },
             {
                 'user': {
-                    'username': 'steph',
+                    'username': 'Pauls',
                     'get_absolute_url': '/p/21/',
                 },
-                'score': 15,
-                'last_challenge_won': 'String of some sort',
+                'score': 12,
+                'last_challenge_won': 'Austin - Central',
             },
             {
                 'user': {
-                    'username': 'steph',
+                    'username': 'Joel',
                     'get_absolute_url': '/p/21/',
                 },
-                'score': 15,
-                'last_challenge_won': 'String of some sort',
+                'score': 3,
+                'last_challenge_won': 'Austin - Central',
             },
         ]
         return context
