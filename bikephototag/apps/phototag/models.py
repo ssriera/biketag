@@ -9,7 +9,7 @@ class Location(models.Model):
     description = models.TextField(blank=True, null=True)
 
     def menu_dict(self):
-        current_photo = PhotoEvent.objects.all().order_by('-date_found')[0]
+        current_photo = PhotoEvent.objects.all().order_by('-date_added')[0]
         print current_photo
 
         menu = {
@@ -20,6 +20,8 @@ class Location(models.Model):
             'photo_url': current_photo.photo.url,
             'get_absolute_url': '/%s/' % self.id
         }
+        if current_photo.found_photo:
+            menu['found_photo_url'] = current_photo.found_photo.url
         return menu
 
 
@@ -33,6 +35,9 @@ class PhotoEvent(models.Model):
     date_found = models.DateTimeField(blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+
+    def __unicode__(self):
+        return u'%s: %s - %s' % (self.pk, self.date_added, self.date_found)
 
 class PhotoHint(models.Model):
     photo = models.ForeignKey('PhotoEvent')

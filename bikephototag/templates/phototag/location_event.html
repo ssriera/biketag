@@ -2,8 +2,127 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="container">
+	<h4>{{location.name}}</h4>
+	<p>You've got <span id="countdown" class="timer">30:01</span> to choose the next location for this event.  Choose wisely, but hurry!<p>
+	<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.found_photo_url}}"><br>
+	<hr>
+	<button type="button" class="btn btn-primary" onclick="displayAddModal()">Add Next Location</button>
+</div>
 
-	
+
+<div class="modal add_photo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Submit Next Location</h4>
+      </div>
+      <div class="modal-body">
+			<video autoplay></video>
+			<img src="">
+			<canvas style="display:none;"></canvas>
+
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="snapshot()">Submit Find</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
+{% block appJS %}
+<script>
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+function displayAddModal() {
+  navigator.getUserMedia({video: true}, function(stream) {
+	video.src = window.URL.createObjectURL(stream);
+	localMediaStream = stream;
+  }, errorCallback);
+  //video.addEventListener('click', snapshot, false);
+  $('.add_photo').modal('show');
+}
+
+var errorCallback = function(e) {
+	console.log('Reeeejected!', e);
+  };
+
+navigator.getUserMedia  = navigator.getUserMedia ||
+		  navigator.webkitGetUserMedia ||
+		  navigator.mozGetUserMedia ||
+		  navigator.msGetUserMedia;
+var video = document.querySelector('video');
+var canvas = document.querySelector('canvas');
+canvas.width = 1024;
+canvas.height = 768;
+var ctx = canvas.getContext('2d');
+var localMediaStream = null;
+
+function snapshot() {
+	//function that is called when the photo is submitted
+	if (localMediaStream) {
+	  ctx.drawImage(video, 0, 0, 1024, 768);
+
+	  // "image/webp" works in Chrome.
+	  // Other browsers will fall back to image/png.
+	  $.post('{{location.get_absolute_url}}new/',
+	  {
+		img : canvas.toDataURL('image/png')
+	  },
+	  function(data){
+		window.location = "{{location.get_absolute_url}}"
+		});
+	  $('.add_photo').modal('hide');
+	}
+}
+</script>
 <script>
 var seconds = 1800;
 function secondPassed() {
@@ -22,17 +141,6 @@ function secondPassed() {
 }
  
 var countdownTimer = setInterval('secondPassed()', 1000);
-</script>
-
-<div class="container">
-	<h4>{{location.name}}</h4>
-	<p>You've got <span id="countdown" class="timer">30:01</span> to choose the next location for this event.  Choose wisely, but hurry!<p>
-	<img class="img-responsive thumbnail col-xs-6 col-md-4 " src="{{location.photo_url}}"><br>
-	<hr>
-</div>
-{% endblock %}
-{% block appJS %}
-<script>
 </script>
 {% endblock %}
 

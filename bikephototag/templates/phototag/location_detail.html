@@ -124,24 +124,21 @@ $.ajaxSetup({
 	var localMediaStream = null;
 
 	function snapshot() {
-	//function that is called when the photo is submitted
-	if (localMediaStream) {
-	  ctx.drawImage(video, 0, 0, 1024, 768);
+		//function that is called when the photo is submitted
+		if (localMediaStream) {
+		  ctx.drawImage(video, 0, 0, 1024, 768);
 
-	  // "image/webp" works in Chrome.
-	  // Other browsers will fall back to image/png.
-      $.post('{{location.get_absolute_url}}next/',
-	  {
-	    img : canvas.toDataURL('image/png')
-	  },
-      function(data){
-		window.location = "{{location.get_absolute_url}}next/"
-		});
-      $('.add_photo').modal('hide');
+		  // "image/webp" works in Chrome.
+		  // Other browsers will fall back to image/png.
+		  $.post('{{location.get_absolute_url}}next/',
+		  {
+			img : canvas.toDataURL('image/png')
+		  },
+		  function(data){
+			window.location = "{{location.get_absolute_url}}next/"
+			});
+		  $('.add_photo').modal('hide');
+		}
 	}
-	}
-
-
-
 </script>
 {% endblock %}

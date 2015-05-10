@@ -78,14 +78,52 @@ class NewLocationEvent(FormView):
         location_id = 1
         location = models.Location.objects.get(pk=location_id)
 
-        current_event = models.PhotoEvent.objects.all().order_by('-date_found')[0]
+        current_event = models.PhotoEvent.objects.all().order_by('-date_added')[0]
         current_event.found_photo=request.FILES['file']
         current_event.finding_user = request.user
         current_event.date_found = datetime.datetime.now()
         current_event.save()
 
+        return HttpResponseRedirect('/%s/next/' % location.id)
+
+class AddNewLocation(FormView):
+    form_class = forms.AddPhotoForm
+
+    def post(self, request, *args, **kwargs):
+        file_field=request.POST['img']
+
+        if file_field.startswith('data:'):
+            params, data = file_field.split(',', 1)
+            params = params[5:] or 'text/plain;charset=US-ASCII'
+            params = params.split(';')
+            if not '=' in params[0] and '/' in params[0]:
+                mimetype = params.pop(0)
+            else:
+                mimetype = 'text/plain'
+            if 'base64' in params:
+                # handle base64 parameters first
+                data = data.decode('base64')
+            for param in params:
+                if param.startswith('charset='):
+                    # handle characterset parameter
+                    data = unquote(data).decode(param.split('=', 1)[-1])
+
+        file = cStringIO.StringIO(data)
+        image = InMemoryUploadedFile(file,
+           field_name='file',
+           name='capture.png',
+           content_type=mimetype,
+           size=sys.getsizeof(file),
+           charset=None)
+        request.FILES[u'file'] = image
+
+        # FIXME: user id from the event
+        location_id = 1
+        location = models.Location.objects.get(pk=location_id)
+
         next_event = models.PhotoEvent(latitude=1, longitude=1)
         next_event.user = request.user
+        next_event.photo=request.FILES['file']
         next_event.save()
 
-        return HttpResponseRedirect('/%s/next/' % location.id)
+        return HttpResponseRedirect('/%s/' % location.id)
