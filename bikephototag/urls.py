@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from bikephototag.apps.phototag.views import Index, LocationDetail,\
-     NewLocationEvent, AddNewLocation, Login
+     NewLocationEvent, AddNewLocation, Login, Leaderboard
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -14,6 +14,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', Index.as_view()),
     url(r'^l/$', Login.as_view()),
+    url(r'^leaderboard/$', Leaderboard.as_view()),
     url(r'^(?P<location_id>\d+)/next/$', NewLocationEvent.as_view()),
     url(r'^(?P<location_id>\d+)/new/$', AddNewLocation.as_view()),
     url(r'^(?P<location_id>\d+)/$', LocationDetail.as_view()),

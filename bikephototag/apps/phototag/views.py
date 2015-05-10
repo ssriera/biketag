@@ -19,6 +19,40 @@ class Login(TemplateView):
         context['registration_form'] = forms.RegistationForm()
         return context
 
+
+class Leaderboard(TemplateView):
+    template_name = 'phototag/leaderboard.html'
+    def get_context_data(self, **kwargs):
+        context = super(Leaderboard, self).get_context_data(**kwargs)
+        context['leaderboard'] = [
+            {
+                'user': {
+                    'username': 'steph',
+                    'get_absolute_url': '/p/21/',
+                },
+                'score': 15,
+                'last_challenge_won': 'String of some sort',
+            },
+            {
+                'user': {
+                    'username': 'steph',
+                    'get_absolute_url': '/p/21/',
+                },
+                'score': 15,
+                'last_challenge_won': 'String of some sort',
+            },
+            {
+                'user': {
+                    'username': 'steph',
+                    'get_absolute_url': '/p/21/',
+                },
+                'score': 15,
+                'last_challenge_won': 'String of some sort',
+            },
+        ]
+        return context
+
+
 class Index(TemplateView):
     template_name = 'phototag/index.html'
 
