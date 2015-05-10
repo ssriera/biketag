@@ -22,3 +22,10 @@ class LocationDetail(TemplateView):
         context = super(LocationDetail, self).get_context_data(**kwargs)
         context['location'] = location.menu_dict()
         return context
+
+class NewLocationEvent(TemplateView):
+    template_name = 'phototag/location_event.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(NewLocationEvent, self).get_context_data(**kwargs)
+        return context
